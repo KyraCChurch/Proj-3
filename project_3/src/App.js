@@ -4,8 +4,20 @@ export default function App(){
     const [cards, setCards] = useState([])
     const [completedCards, setCompletedCards] = useState([])
     const [newCard, setNewCard] = useState({
-        title: '',
-        completed: false
+        dogName: '',
+        present: false,
+        owner1stName: '',
+        owner2ndName: '',
+        ownerNumber: '',
+        vet: '',
+        vetNumber: '',
+        dogWeight: '',
+        dogAge: '',
+        dogBreed: '',
+        feeding: '',
+        vacRabbies: '',
+        vacDistemper: '',
+        vacBordatella: ''
     })
 
     //createCards
@@ -23,18 +35,32 @@ export default function App(){
             const cardsCopy = [createdCard,...cards]
             setCards(cardsCopy)
             setNewCard({
-                title: '',
-                completed: false
+                dogName: '',
+                present: false,
+                owner1stName: '',
+                owner2ndName: '',
+                ownerNumber: '',
+                vet: '',
+                vetNumber: '',
+                dogWeight: '',
+                dogAge: '',
+                dogBreed: '',
+                feeding: '',
+                vacRabbies: '',
+                vacDistemper: '',
+                vacBordatella: ''
             })
         } catch (error) {
             console.error(error)
         }
     }
     //deleteCards
-    //moveToCart
+    //moveToPresent
 
     return(<>
-        <input type="text" value={newCard.title} onChange={() => {
+        <input type="text" 
+        value={newCard.title} 
+        onChange={(e) => {
             setNewCard({...newCard, title: e.target.value})
         }} 
         onKeyDown={(e) => {

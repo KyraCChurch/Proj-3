@@ -32,7 +32,7 @@ export default function App(){
             console.error(error)
         }
     }
-    //mooveToCards
+    //moveToCards
     const moveToCards = async (id) => {
         try {
             const index = presentCards.findIndex((card) => card._id === id)

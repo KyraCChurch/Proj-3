@@ -4,9 +4,9 @@ import CardList from './components/CardList/CardList'
 
 export default function App(){
     const [cards, setCards] = useState([])
-    const [completedCards, setCompletedCards] = useState([])
+    const [presentCards, setPresentCards] = useState([])
     const [newCard, setNewCard] = useState({
-        title: '',
+        ownersName: '',
         present: false
     })
 
@@ -25,33 +25,38 @@ export default function App(){
             const cardsCopy = [createdCard,...cards]
             setCards(cardsCopy)
             setNewCard({
-                title: '',
+                ownersName: '',
                 present: false
             })
         } catch (error) {   
             console.error(error)
         }
     }
-    //deleteCards
-    const deleteCard = async (id) => {
+    //mooveToCards
+    const moveToCards = async (id) => {
         try {
-            const index = completedCards.findIndex((card) => card._id === id)
-            const completedCardsCopy = [...completedCards]
+            const index = presentCards.findIndex((card) => card._id === id)
+            const presentCardsCopy = [...presentCards]
+            const subject = presentCardsCopy[index]
+            subject.present = false
             const response = await fetch(`/api/cards/${id}`, {
-                method: 'DELETE',
+                method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
-                }
+                },
+                body: JSON.stringify(subject)
             })
-            await response.json()
-            completedCardsCopy.splice(index, 1)
-            setCompletedCards(completedCardsCopy)
+            const updatedCd = await response.json()
+            const presentCDsCopy = [updatedCd, ...cards]
+            setPresentCards(presentCDsCopy)
+            presentCardsCopy.splice(index, 1)
+            setPresentCards(presentCardsCopy)
         } catch (error) {
             console.error(error)
         }
     }
-    //moveToCompleted
-    const moveToCompleted = async (id) => {
+    //moveToPresent
+    const moveToPresent = async (id) => {
         try {
             const index = cards.findIndex((card) => card._id === id)
             const cardsCopy = [...cards]
@@ -65,8 +70,8 @@ export default function App(){
                 body: JSON.stringify(subject)
             })
             const updatedCard = await response.json()
-            const completedTDsCopy = [updatedCard, ...completedCards]
-            setCompletedCards(completedTDsCopy)
+            const presentTDsCopy = [updatedCard, ...presentCards]
+            setPresentCards(presentTDsCopy)
             cardsCopy.splice(index, 1)
             setCards(cardsCopy)
         } catch (error) {
@@ -80,8 +85,8 @@ export default function App(){
             const foundCards = await response.json()
             setCards(foundCards.reverse())
             const responseTwo = await fetch('/api/cards/present')
-            const foundCompletedCards = await responseTwo.json()
-            setCompletedCards(foundCompletedCards.reverse())
+            const foundPresentCards = await responseTwo.json()
+            setPresentCards(foundPresentCards.reverse())
         } catch(error){
             console.error(error)
         }
@@ -96,9 +101,9 @@ export default function App(){
             setNewCard={setNewCard}
             createCard={createCard}
             cards={cards}
-            moveToCompleted={moveToCompleted}
-            completedCards={completedCards}
-            deleteCard={deleteCard}
+            moveToPresent={moveToPresent}
+            presentCards={presentCards}
+            moveToCards={moveToCards}
             />
         </>
     )

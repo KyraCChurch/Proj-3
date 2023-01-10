@@ -2,8 +2,8 @@ const Card = require('../../models/card')
 
 module.exports = {
     create,
-    indexComplete,
-    indexNotComplete,
+    indexArrive,
+    indexNotArrive,
     show,
     update,
     destroy,
@@ -37,7 +37,7 @@ async function create(req, res, next){
 
 
 // read - index, show
-async function indexComplete(req, res, next){
+async function indexArrive(req, res, next){
     try {
         const cards = await Card.find({ present: true })
         res.locals.data.cards = cards
@@ -47,7 +47,7 @@ async function indexComplete(req, res, next){
     }
 }
 
-async function indexNotComplete(req, res, next){
+async function indexNotArrive(req, res, next){
     try {
         const cards = await Card.find({ present: false })
         res.locals.data.cards = cards

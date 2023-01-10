@@ -3,9 +3,9 @@ const router = express.Router()
 const cardCtrl = require('../../controllers/api/cards')
 
 // Index /api/cards
-router.get('/', cardCtrl.indexNotComplete, cardCtrl.jsonCards)
+router.get('/', cardCtrl.indexNotArrive, cardCtrl.jsonCards)
 // Index /api/cards/present
-router.get('/present', cardCtrl.indexComplete, cardCtrl.jsonCards)
+router.get('/present', cardCtrl.indexArrive, cardCtrl.jsonCards)
 // Delete /api/cards/:id
 router.delete('/:id', cardCtrl.destroy, cardCtrl.jsonCard)
 // Update /api/card/:id

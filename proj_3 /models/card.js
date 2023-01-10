@@ -1,7 +1,7 @@
 const { model, Schema } = require('mongoose')
 
 const cardSchema = new Schema ({
-    title: {required: true, type: String},
+    ownersName: {required: true, type: String},
     present: { required: true, type: String}
 }, {
     timestamps: true

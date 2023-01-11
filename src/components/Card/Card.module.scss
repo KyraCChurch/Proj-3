@@ -1,0 +1,16 @@
+.card {
+    font-size: 1.5rem;
+    color: black;
+    .button {
+        background-color: rgba(67, 105, 125, 0.8);
+        text-transform: uppercase;
+        cursor: pointer;
+        color: ghostwhite;
+        padding: 5px;
+        font-size: 14px;
+        font-weight: 700;
+        margin-left: 10px;
+        border: 2px;
+        box-shadow: 0 2px 5px rgba(23, 5, 58, 0.5);
+    }
+}

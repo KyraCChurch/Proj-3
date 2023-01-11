@@ -17,7 +17,7 @@ class Default extends React.Component {
             {card ? <a href={`/cards/${card._id}`}>{card.name} Show Page</a> : ''}<br />
           </nav>
           <h1>
-            {ownersName}
+            {title}
           </h1>
           {this.props.children}
         </body>

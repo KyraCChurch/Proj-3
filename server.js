@@ -68,6 +68,7 @@ app.listen(PORT, () => {
     console.log(`I am listening on ${PORT}. We In the Building`)
 })
 
+app.use(express.urlencoded({ extended: true }))
 app.use((req, res, next) => {
     res.locals.data = {}
     next()
